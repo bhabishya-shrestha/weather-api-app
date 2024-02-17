@@ -13,6 +13,9 @@ import org.json.simple.parser.JSONParser;
 
 public class WeatherApp {
 
+    // removes type safety warning for putting different types of weather info
+    // objects into JSONObject weatherdata
+    @SuppressWarnings("unchecked")
     // fetches weather data given location
     public static JSONObject getWeatherData(String locationName) {
 
@@ -32,7 +35,7 @@ public class WeatherApp {
 
         try {
 
-            // get api respo nse
+            // get api response
             HttpURLConnection connection = fetchApiResponse(urlString);
 
             // check response status
@@ -66,7 +69,32 @@ public class WeatherApp {
             JSONObject hourly = (JSONObject) resultJsonObject.get("hourly");
 
             // current hour's data means retrieving index of current hour
+            JSONArray time = (JSONArray) hourly.get("time");
             int index = findIndexOfCurrentTime(time);
+
+            JSONArray temperatureData = (JSONArray) hourly.get("temperature_2m");
+            double temperature = (double) temperatureData.get(index);
+
+            // extract weather code
+            JSONArray weathercode = (JSONArray) hourly.get("weathercode");
+            String weatherCondition = convertWeatherCode((long) weathercode.get(index));
+
+            // extract humidity
+            JSONArray relativeHumidity = (JSONArray) hourly.get("relativehumidity_2m");
+            long humidity = (long) relativeHumidity.get(index);
+
+            // extract windspeed
+            JSONArray windspeedData = (JSONArray) hourly.get("windspeed_10m");
+            double windspeed = (double) windspeedData.get(index);
+
+            // build the weather json data object needed for front-end
+            JSONObject weatherData = new JSONObject();
+            weatherData.put("temperature", temperature);
+            weatherData.put("weather_condition", weatherCondition);
+            weatherData.put("humidity", humidity);
+            weatherData.put("windspeed", windspeed);
+
+            return weatherData;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,7 +119,6 @@ public class WeatherApp {
             HttpURLConnection connection = fetchApiResponse(urlString);
 
             // checks response status
-
             if (connection.getResponseCode() != 200) {
                 System.out.println("Error: Couldn't connect to API");
                 return null;
@@ -139,7 +166,6 @@ public class WeatherApp {
 
             // attempt creating connection
             URL url = new URI(urlString).toURL();
-
             connection = (HttpURLConnection) url.openConnection();
 
             // sets request method of get
@@ -149,8 +175,8 @@ public class WeatherApp {
             connection.connect();
 
         } catch (Exception e) {
-            e.printStackTrace();
 
+            e.printStackTrace();
             return null;
         }
 
@@ -161,6 +187,14 @@ public class WeatherApp {
     private static int findIndexOfCurrentTime(JSONArray timeList) {
         String currentTime = getCurrentTime();
 
+        // iterate through time list to see one that matches local current time
+        for (int i = 0; i < timeList.size(); i++) {
+            String time = (String) timeList.get(i);
+            if (time.equalsIgnoreCase(currentTime)) {
+                // return index
+                return i;
+            }
+        }
         return 0;
     }
 
@@ -175,5 +209,33 @@ public class WeatherApp {
         String formattedDateTime = currentDateTime.format(formatter);
 
         return formattedDateTime;
+    }
+
+    // converts weathercode into readable data
+    private static String convertWeatherCode(long weathercode) {
+        String weatherCondition = "";
+        if (weathercode == 0L) {
+
+            // clear weather
+            weatherCondition = "Clear";
+
+        } else if (weathercode <= 3L && weathercode > 0L) {
+
+            // cloudy weather
+            weatherCondition = "Cloudy";
+
+        } else if ((weathercode >= 51L && weathercode <= 67L)
+                || (weathercode >= 80L && weathercode <= 99L)) {
+
+            // rainy weather
+            weatherCondition = "Rain";
+
+        } else if (weathercode >= 71L && weathercode <= 77L) {
+
+            // snowy weather
+            weatherCondition = "Snow";
+        }
+
+        return weatherCondition;
     }
 }
