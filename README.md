@@ -52,7 +52,7 @@ This project is licensed under the [MIT License](LICENSE.md) - see the LICENSE f
 ## Acknowledgments
 
 - Thanks to the Visual Studio Code team for the excellent Java development environment.
-- Weather data provided by [Name of the Weather API Service].
+- Weather data provided by [Open MeteoOpen, an open-source weather API].
 
 ---
 
