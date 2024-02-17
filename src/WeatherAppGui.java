@@ -49,6 +49,18 @@ public class WeatherAppGui extends JFrame {
         weatherConditionImage.setBounds(0, 125, 450, 217);
 
         add(weatherConditionImage);
+
+        // temperature info
+        JLabel temperatureText = new JLabel("70 F");
+
+        temperatureText.setBounds(0, 350, 450, 54);
+
+        temperatureText.setFont(new Font("Dialog", Font.BOLD, 48));
+
+        // center text
+        temperatureText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        add(temperatureText);
     }
 
     private ImageIcon loadImage(String resourcePath) {
