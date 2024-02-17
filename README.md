@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-Welcome to the Weather API App. This application is designed to provide real-time weather information using a Java-based graphical user interface. It's built to run in the Visual Studio Code environment, leveraging its powerful Java support. This guide will help you set up and run the application on your local machine.
+Welcome to the Weather API App. This Java-based application provides real-time weather information through a graphical user interface. Designed for use in the Visual Studio Code environment, it offers a seamless experience for getting up-to-date weather data.
 
 ## Prerequisites
 
@@ -17,33 +17,33 @@ The project is organized as follows:
 
 - `src`: Contains the source code files for the application.
 - `lib`: A directory for the project's dependencies. Add any required libraries here.
-- `bin`: The default directory for compiled output files. This is where your `.class` files will be generated after compilation.
+- `bin`: The default directory for compiled output files, where `.class` files will be generated.
 
-> **Note:** To customize the folder structure, modify the `.vscode/settings.json` file accordingly.
+> **Note:** You can customize the folder structure by modifying the `.vscode/settings.json` file.
 
 ## Setting Up the Project
 
-1. **Clone the Repository**: Start by cloning this repository to your local machine.
+1. **Clone the Repository**: Begin by cloning this repository to your local machine.
 2. **Open the Project**: Open the folder in Visual Studio Code.
-3. **Install Dependencies**: Navigate to the `JAVA PROJECTS` view in VSCode to manage your project's dependencies. For detailed instructions, visit [this link](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+3. **Install Dependencies**: Use the `JAVA PROJECTS` view in VSCode to manage your dependencies. Detailed instructions can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
 
 ## Running the Application
 
-To run the Weather API App, follow these steps:
+Follow these steps to run the Weather API App:
 
-1. Navigate to the `src` directory in your terminal or command prompt.
-2. Compile the Java files using the command `javac -d bin src/*.java` to generate the `.class` files in the `bin` folder.
-3. Run the application with `java -cp bin AppLauncher`.
+1. Open the `src` directory in your terminal or command prompt.
+2. Compile the Java files with `javac -d bin src/*.java` to generate `.class` files in the `bin` folder.
+3. Run the application using `java -cp bin AppLauncher`.
 
 ## Using the Weather API App
 
-Upon launching, the Weather App GUI will appear. Here's how to use it:
+Upon launching, the Weather App GUI appears, allowing you to:
 
-- **Search for Weather**: Enter a location in the search bar and press enter to retrieve and display the weather information.
+- **Search for Weather**: Simply enter a location in the search bar. You can now initiate the search by pressing the enter key or clicking the search button, making it more user-friendly. The app will retrieve and display the current weather information for the specified location.
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
+Contributions are welcome! To contribute, please fork the repository and use a feature branch. Pull requests are highly appreciated.
 
 ## License
 
@@ -51,10 +51,9 @@ This project is licensed under the [MIT License](LICENSE.md) - see the LICENSE f
 
 ## Acknowledgments
 
-- Thanks to the Visual Studio Code team for the excellent Java development environment.
-- Weather data provided by [Open MeteoOpen, an open-source weather API].
+- Thanks to the Visual Studio Code team for the excellent development environment.
+- Weather data is provided by [Open Meteo](https://open-meteo.com/), an open-source weather API, ensuring accurate and up-to-date information.
 
 ---
 
-For more information on how to write Java code in Visual Studio Code, refer to the official [Visual Studio Code Java Tutorial](https://code.visualstudio.com/docs/java/java-tutorial).
-
+For additional guidance on writing Java code in Visual Studio Code, refer to the official [Visual Studio Code Java Tutorial](https://code.visualstudio.com/docs/java/java-tutorial).
