@@ -61,6 +61,17 @@ public class WeatherAppGui extends JFrame {
         temperatureText.setHorizontalAlignment(SwingConstants.CENTER);
 
         add(temperatureText);
+
+        // weather description
+        JLabel weatherConditionDescription = new JLabel("Cloudy");
+
+        weatherConditionDescription.setBounds(0, 405, 450, 36);
+
+        weatherConditionDescription.setFont(new Font("Dialog", Font.PLAIN, 32));
+
+        weatherConditionDescription.setHorizontalAlignment((SwingConstants.CENTER));
+
+        add(weatherConditionDescription);
     }
 
     private ImageIcon loadImage(String resourcePath) {
