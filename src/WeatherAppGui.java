@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -18,19 +19,20 @@ public class WeatherAppGui extends JFrame {
     public WeatherAppGui() {
         super("Weather App");
 
+        // Set the background color
+        getContentPane().setBackground(Color.decode("#092238"));
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(450, 650);
-
         setLocationRelativeTo(null);
-
         setLayout(null);
-
         setResizable(false);
 
         addGuiComponents();
     }
 
     private void addGuiComponents() {
+        Color textColor = Color.decode("#A2D1E1");
 
         // weather image
         JLabel weatherConditionImage = new JLabel(loadImage("src/assets/cloudy.png"));
@@ -39,15 +41,18 @@ public class WeatherAppGui extends JFrame {
 
         // temperature info
         JLabel temperatureText = new JLabel("70 F");
+        temperatureText.setForeground(textColor);
         temperatureText.setBounds(0, 350, 450, 54);
         temperatureText.setFont(new Font("Dialog", Font.BOLD, 48));
 
         // center text
         temperatureText.setHorizontalAlignment(SwingConstants.CENTER);
+        temperatureText.setForeground(textColor);
         add(temperatureText);
 
         // weather description
         JLabel weatherConditionDescription = new JLabel("Cloudy");
+        weatherConditionDescription.setForeground(textColor);
         weatherConditionDescription.setBounds(0, 405, 450, 36);
         weatherConditionDescription.setFont(new Font("Dialog", Font.PLAIN, 32));
         weatherConditionDescription.setHorizontalAlignment((SwingConstants.CENTER));
@@ -60,6 +65,7 @@ public class WeatherAppGui extends JFrame {
 
         // humidity text
         JLabel humidityText = new JLabel("<html><b>Humidity</b> 100% </html>");
+        humidityText.setForeground(textColor);
         humidityText.setBounds(90, 500, 85, 55);
         humidityText.setFont(new Font("Dialog", Font.PLAIN, 16));
         add(humidityText);
@@ -71,6 +77,7 @@ public class WeatherAppGui extends JFrame {
 
         // windspeed text
         JLabel windspeedText = new JLabel("<html><b>Windspeed</b> 15mi/h</html>");
+        windspeedText.setForeground(textColor);
         windspeedText.setBounds(310, 500, 85, 55);
         windspeedText.setFont(new Font("Dialog", Font.PLAIN, 16));
         add(windspeedText);
@@ -134,7 +141,7 @@ public class WeatherAppGui extends JFrame {
         // search button component
         JButton searchButton = new JButton(loadImage("src/assets/search.png"));
         searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        searchButton.setBounds(375, 13, 47, 45);
+        searchButton.setBounds(375, 15, 47, 45);
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
