@@ -72,6 +72,13 @@ public class WeatherAppGui extends JFrame {
         weatherConditionDescription.setHorizontalAlignment((SwingConstants.CENTER));
 
         add(weatherConditionDescription);
+
+        // humidity image
+        JLabel humidityImage = new JLabel(loadImage("src/assets/humidity.png"));
+
+        humidityImage.setBounds(15, 500, 74, 66);
+
+        add(humidityImage);
     }
 
     private ImageIcon loadImage(String resourcePath) {
