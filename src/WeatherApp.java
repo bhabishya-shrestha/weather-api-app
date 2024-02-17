@@ -31,7 +31,7 @@ public class WeatherApp {
         // build API request URL using the geo location
         String urlString = "https://api.open-meteo.com/v1/forecast?" +
                 "latitude=" + latitude + "&longitude=" + longitude +
-                "&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2Chicago";
+                "&hourly=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch";
 
         try {
 
@@ -41,7 +41,7 @@ public class WeatherApp {
             // check response status
             // 200: successful connection
             if (connection.getResponseCode() != 200) {
-                System.out.println("Error: Couldn't connect to API");
+                System.out.println("Error: Couldn't connect to API here");
                 return null;
             }
 
@@ -76,15 +76,15 @@ public class WeatherApp {
             double temperature = (double) temperatureData.get(index);
 
             // extract weather code
-            JSONArray weathercode = (JSONArray) hourly.get("weathercode");
+            JSONArray weathercode = (JSONArray) hourly.get("weather_code");
             String weatherCondition = convertWeatherCode((long) weathercode.get(index));
 
             // extract humidity
-            JSONArray relativeHumidity = (JSONArray) hourly.get("relativehumidity_2m");
+            JSONArray relativeHumidity = (JSONArray) hourly.get("relative_humidity_2m");
             long humidity = (long) relativeHumidity.get(index);
 
             // extract windspeed
-            JSONArray windspeedData = (JSONArray) hourly.get("windspeed_10m");
+            JSONArray windspeedData = (JSONArray) hourly.get("wind_speed_10m");
             double windspeed = (double) windspeedData.get(index);
 
             // build the weather json data object needed for front-end
